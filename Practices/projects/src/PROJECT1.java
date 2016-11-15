@@ -4,7 +4,7 @@ import java.util.Scanner;
 /**
  * Created by ayako_sayama on 2016/11/10.
  */
-public class JAVATEST {
+public class PROJECT1 {
     public static void main (String[] args) {
 
 
