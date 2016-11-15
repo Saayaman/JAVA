@@ -1,5 +1,3 @@
-import java.text.NumberFormat;
-import java.util.Locale;
 
 /**
  * Created by ayako_sayama on 2016/11/10.
@@ -7,7 +5,6 @@ import java.util.Locale;
 
 public class Main4 {
     public static void main(String[] args){
-
 
         // Practicing with if else statement
         String str1 = "Hello";
@@ -48,6 +45,7 @@ public class Main4 {
         int position = s1.indexOf("California");
         System.out.println("Position of substring: " + position);
 
+        //substring takes out the nth number of charater
         String sub = s1.substring(12);
         System.out.println(sub);
 
@@ -55,6 +53,7 @@ public class Main4 {
         String s2 = "Welcome!       ";
         int len1 = s2.length();
         System.out.println(len1);
+        //trim() trims the spaces
         String s3 = s2.trim();
         System.out.println(s3.length());
     }
