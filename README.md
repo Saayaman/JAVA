@@ -15,6 +15,7 @@ $ javac (filename).java
 $ java (classname)
 
 =========================================================
+/Practice/...
 
 
 Main1.java
@@ -57,3 +58,5 @@ Main6.java
 
  Main7.java
  - parsing string to double value
+ - using IOException
+ - parseDouble
