@@ -1,17 +1,29 @@
 
-//RETURN HUGS for all cases
+//RETURN hug for ALL cases
 
+import java.util.Scanner;
 
 public class HUG
 {
     public static void main(String[] x)
+    {
+        Scanner feelings = new Scanner(System.in);
 
-{
+        System.out.println("I am feeling...");
+        String saaya = feelings.nextLine();
 
-  String[] saaya = {"sad", "happy", "super", "tired", "angry"};
-    if (saaya == ["sad"]) {  return "hug";  }
-    else if(saaya == ["happy"]) {  return "hug";  }
-    return "hug";
-}
+        String bigHug = "Ahh don't worry! You are loved! BIG HUGS!!";
+        String hug = "Everybody needs a hug, HUGS!!";
+
+        if (saaya.equalsIgnoreCase("sad")) {
+
+            System.out.println(bigHug);
+        }
+
+        else {
+            System.out.println(hug);
+        }
+
+    }
 
 }
