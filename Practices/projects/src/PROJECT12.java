@@ -5,6 +5,7 @@ import java.util.Scanner;
  * Created by ayako_sayama on 2016/11/17.
  */
 public class PROJECT12 {
+
     public static void main(String[] args){
         System.out.print("Enter a 4 digit pin number to encrypt: ");
         Scanner scan = new Scanner(System.in);
