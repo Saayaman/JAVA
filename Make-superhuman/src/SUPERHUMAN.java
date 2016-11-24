@@ -13,9 +13,6 @@ public class SUPERHUMAN extends HUMAN {
      * @param superpowers
      */
 
-
-
-
     public SUPERHUMAN(String firstName, String lastName, int age, String superpowers){
 
         super(firstName, lastName, age);
