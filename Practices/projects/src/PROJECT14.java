@@ -39,7 +39,9 @@ public class PROJECT14 {
 
         //Solution 2. How to print out arrays
         for (int i = 0; i< nums.length; i++){
-            System.out.println(nums[i]);
+            System.out.println("\"" + nums[i]+ "\"");
         }
+
+
     }
 }

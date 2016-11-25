@@ -1,13 +1,11 @@
-import java.math.BigDecimal;
-
 /**
  * Created by ayako_sayama on 2016/11/23.
  */
 public class CreditCard {
 
 
-    private static double baseRate =0.01;
-    private static long lastAccountNumber = 0000001;
+    private static double baseRate = 1;
+    private static long lastAccountNumber = 9000001;
 
 
     //double if it has decimals
@@ -33,13 +31,14 @@ public class CreditCard {
 //        this.rate = rate;
 //        this.creditLimit = creditLimit;
 
-        if (creditScore >= 0 || creditScore < 300){
+        if (creditScore >= 0 && creditScore < 300){
             this.rate = baseRate + ((baseRate*10)/100);
             this.creditLimit = 1000;
-        } else if (creditScore >= 300 || creditScore < 500){
+
+        } else if (creditScore >= 300 && creditScore < 500){
             this.rate = baseRate + ((baseRate*7)/100);
             this.creditLimit = 3000;
-        } else if (creditScore >= 500 || creditScore < 700){
+        } else if (creditScore >= 500 && creditScore < 700){
             this.rate = baseRate + ((baseRate*4)/100);
             this.creditLimit = 7000;
         } else {
@@ -49,15 +48,21 @@ public class CreditCard {
     }
 
 
+    public double getBalance(){
+        return balance;
+    }
 
-    public void makePurchase(double purchaseAmount){
 
-        if (purchaseAmount + balance > creditLimit){
-            return;
+    public double makePurchase(double purchase){
+
+        if (purchase + balance > creditLimit){
+            return balance;
         } else {
-            balance = balance + purchaseAmount;
+            balance = balance + purchase;
+            return balance;
         }
     }
+
 
     public void makePayment(double payAmount){
         if (payAmount > balance){
@@ -78,9 +83,15 @@ public class CreditCard {
 
     }
 
+//    public double getRate(){
+//        return rate;
+//    }
+
+
     public void raiseRate(double raiseRate){
         rate = rate + raiseRate;
     }
+
 
     public void raiseLimit(double raiseLimit){
         creditLimit = creditLimit + raiseLimit;
@@ -91,29 +102,19 @@ public class CreditCard {
     }
 
 
-//    public String toString(){
-//
-
-//
-//
-//      String holderName = "Account Holder Name: " + accountHolder;
-//        String secretAccount = "Account.number"+ decryptedAccount;
-//      return holderName, secretAccount;
-//}
-
 
     @Override
     public String toString() {
         String accountString = Integer.toString((int)accountNumber);
         String decrypted = accountString.substring(4,7);
         String decryptedAccount = "****" + decrypted;
-        return "CreditCard{" +
-                "accountHolder='" + accountHolder + '\'' +
-                ", accountNumber=" + decryptedAccount +
-                ", balance=" + balance +
-                ", creditScore=" + creditScore +
-                ", rate=" + rate +
-                ", creditLimit=" + creditLimit +
+        return "CreditCard{" + '\n' +
+                "1. accountHolder= '" + accountHolder + '\'' + ',' + '\n' +
+                "2. accountNumber= " + decryptedAccount + ',' + '\n' +
+                "3. balance= " + balance + ',' + '\n' +
+                "4. creditScore= " + creditScore + ',' + '\n' +
+                "5. rate= " + rate + ',' + '\n' +
+                "6. creditLimit= " + creditLimit + ',' + '\n' +
                 '}';
 
         //toString をプリントするときはこれをmain にいれるべし。
@@ -122,14 +123,16 @@ public class CreditCard {
 
     }
 
-    public void printall() {
-        System.out.println("Account Holder Name: " + accountHolder);
-        System.out.println("Credit Score: " + creditScore);
-        System.out.println("My Balance: "+balance);
-        System.out.println("Annual Interest Rate: " +rate);
-        System.out.println("My Credit Card Limit: $"+ creditLimit);
 
-
-
-    }
+//
+//    public void printall() {
+//        System.out.println("Account Holder Name: " + accountHolder);
+//        System.out.println("Credit Score: " + creditScore);
+//        System.out.println("My Balance: "+balance);
+//        System.out.println("Annual Interest Rate: " +rate);
+//        System.out.println("My Credit Card Limit: $"+ creditLimit);
+//
+//
+//
+//    }
 }
