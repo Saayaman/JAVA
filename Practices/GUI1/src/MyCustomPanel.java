@@ -34,14 +34,21 @@ public class MyCustomPanel extends JPanel{
 
         @Override
         public void actionPerformed(ActionEvent e) {
+
             if (e.getSource() == buttonCounter)
             {
                 System.out.println("Button Counter!");
+                label.setText("Pushes: "+((counter++)));
             }
             else if(e.getSource() == sqrt)
             {
+
+                label.setText("Pushes: "+((counter++)));
+
                 System.out.println(Math.sqrt(Double.parseDouble(textField.getText())));
-            }
+
+
+            } textField.setText("This is the counter:" + counter);
         }
     }
 
