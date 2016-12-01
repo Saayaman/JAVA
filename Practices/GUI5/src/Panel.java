@@ -1,8 +1,11 @@
 import javax.swing.*;
+import javax.swing.text.DateFormatter;
 import javax.swing.text.html.ObjectView;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.geom.Arc2D;
+import java.util.Objects;
 
 
 public class Panel extends JPanel {
@@ -16,6 +19,10 @@ public class Panel extends JPanel {
         private JPanel top = new JPanel();
         private JPanel left = new JPanel();
         private JPanel right = new JPanel();
+        Double num = null;
+        private String source2;
+        private Object source;
+        private String operation;
 
 
     public Panel(){
@@ -98,64 +105,185 @@ public class Panel extends JPanel {
         public void actionPerformed(ActionEvent event){
 
 
-           Object source = event.getSource();
+            source2 = calculation.getText();
 
-            String source2 = calculation.getText();
-            int num;
+
+            //double calculate;
+
 
             //Double input = Double.parseDouble(calculation.getText());
 
-//            switch (source){
-//                case "1":  calculation.setText("1");
-//                    break;
-//               default: calculation.setText("1");
-//                   break;
-//            }
+
+            //buttonAction(event);
 
 
-            if(source == button1)
-                { calculation.setText(source2+"1");
+            if (Objects.equals(source2, "+") || source2.equals("-") || source2.equals("*") || source2.equals("/"))
+                {
+
+                    calculation.setText(null);
+                    System.out.println("if");
+
+                    switch (source2){
+                        case "+": operation = "+";
+                            break;
+                        case "-": operation = "-";
+                            break;
+                        case "*": operation = "*";
+                            break;
+                        case "/": operation = "/";
+                            break;
+                    }
+
+                     buttonAction(event);
 
                 }
-            else if(source == button2)
-                { calculation.setText(source2+"2"); }
-            else if(source == button3)
-                { calculation.setText(source2+"3"); }
-            else if(source == button4)
-                { calculation.setText(source2+"4"); }
-            else if(source == button5)
-                { calculation.setText(source2+"5"); }
-            else if(source == button6)
-                { calculation.setText(source2+"6"); }
-            else if(source == button7)
-                { calculation.setText(source2+"7"); }
-            else if(source == button8)
-                { calculation.setText(source2+"8"); }
-            else if(source == button9)
-                { calculation.setText(source2+"9"); }
-            else if(source == button0)
-                { calculation.setText(source2+"0"); }
-            else if(source == buttonDot)
-                 { calculation.setText(source2+"."); }
-
-
-            else if(source == plus)
-            { calculation.setText(source2+" + "); }
-            else if(source == minus)
-            { calculation.setText(source2+" - "); }
-            else if (source == multiply)
-            { calculation.setText(source2+" * ");}
-            else if(source == divide)
-            { calculation.setText(source2+" / "); }
-            else {
-                calculation.setText(String.valueOf(source2));
-                System.out.println(source2);
-
-                //!!!画面に乗っているものを全部書き出したい！
+            else
+            {
+                buttonAction(event);
+                System.out.println("else!");
             }
+
         }
 
     }
+
+    private void buttonAction(ActionEvent e){
+        source = e.getSource();
+
+        if(source == button1)
+        {
+//            setOperation();
+            calculation.setText(source2+"1");
+//            num = Integer.valueOf(source2);
+        }
+        else if(source == button2)
+        {
+            calculation.setText(source2+"2");
+//            num = Integer.valueOf(source2);
+        }
+        else if(source == button3)
+        {
+            calculation.setText(source2+"3");
+//            num = Integer.valueOf(source2);
+        }
+        else if(source == button4)
+        {
+            calculation.setText(source2+"4");
+//            num = Integer.valueOf(source2);
+        }
+        else if(source == button5)
+        {
+            calculation.setText(source2+"5");
+//            num = Integer.valueOf(source2);
+        }
+        else if(source == button6)
+        {
+            calculation.setText(source2+"6");
+//            num = Integer.valueOf(source2);
+        }
+        else if(source == button7)
+        {
+            calculation.setText(source2+"7");
+//            num = Integer.valueOf(source2);
+        }
+        else if(source == button8)
+        {
+            calculation.setText(source2+"8");
+//            num = Integer.valueOf(source2);
+        }
+        else if(source == button9)
+        {
+            calculation.setText(source2+"9");
+//            num = Integer.valueOf(source2);
+        }
+        else if(source == button0)
+        {
+            calculation.setText(source2+"0");
+//            num = Integer.valueOf(source2);
+        }
+        else if(source == buttonDot)
+        {
+            calculation.setText(source2+".");
+//            num = Integer.valueOf(source2);
+        }
+        else if(source == plus)
+        {
+            //Double.parseDouble(calculation.getText());
+            calculation.setText(null);
+            System.out.println(num);
+            num = num + Double.parseDouble(source2);
+            System.out.println(num);
+            calculation.setText("+");
+
+        }
+        else if(source == minus)
+        {
+
+            calculation.setText(null);
+            System.out.println(num);
+            if (source2 == null){
+                num = Double.parseDouble(source2);
+            } else {
+            num = num - Double.parseDouble(source2);
+            System.out.println(num);
+            }
+            calculation.setText("-");
+
+        }
+        else if (source == multiply)
+        {
+            calculation.setText(null);
+            System.out.println(num);
+            num = num * Double.parseDouble(source2);
+            System.out.println(num);
+            calculation.setText("*");
+        }
+        else if(source == divide)
+        {
+            calculation.setText(null);
+            System.out.println(num);
+            num = num / Double.parseDouble(source2);
+            System.out.println(num);
+            calculation.setText("/");
+        } else //whey you press equal
+        {
+            calculation.setText(String.valueOf(num));
+            switch (operation){
+                case "+":
+                    num = num + Double.parseDouble(source2);
+                    System.out.println("You pressed Equal!");
+                    break;
+                case "-":
+                    num = num - Double.parseDouble(source2);
+                    System.out.println("You pressed Equal!");
+                    break;
+            }
+
+
+        }
+
+    }//button action
+
+//    public void setOperation(){
+//        if (source2.equals("+") || source2.equals("-") || source2.equals("*") || source2.equals("/"))
+//        {
+//
+//            switch (source2){
+//                case "+": operation = "+";
+//                    break;
+//                case "-": operation = "-";
+//                    break;
+//                case "*": operation = "*";
+//                    break;
+//                case "/": operation = "/";
+//                    break;
+//            }
+//
+//            calculation.setText("hi!");
+//            System.out.print("this is a function");
+//
+//        }
+//    }
 
 
 }
