@@ -1,3 +1,6 @@
+/**
+ * Created by ayako_sayama on 2016/11/30.
+ */
 import javax.swing.*;
 import java.awt.*;
 
@@ -10,16 +13,15 @@ public class Frame {
     static int count = 0;
     public static void main(String[] args){
 
-        JFrame frame = new JFrame("Doing maths");
+        JFrame frame = new JFrame("Calculator");
         Panel panel = new Panel();
-        Dimension d = new Dimension(400,40);
-
+//        Dimension d = new Dimension(100,40);
 
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.getContentPane().add(panel);
         frame.pack();
-
         frame.setVisible(true);
+
 
     }
 
