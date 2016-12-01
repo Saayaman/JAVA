@@ -1,5 +1,8 @@
 import javax.swing.*;
+import javax.swing.text.html.ObjectView;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 
 public class Panel extends JPanel {
@@ -8,7 +11,8 @@ public class Panel extends JPanel {
         private JButton button1, button2, button3, button4, button5, button6, button7, button8, button9, buttonDot, button0, buttonEqual;
         private JButton plus, minus, divide, multiply;
         private JTextField calculation;
-        //private Listener listener;
+        private Listener listener;
+
         private JPanel top = new JPanel();
         private JPanel left = new JPanel();
         private JPanel right = new JPanel();
@@ -41,7 +45,7 @@ public class Panel extends JPanel {
 
         setLayout(new BorderLayout());
         add(top, BorderLayout.NORTH);
-        add(left, BorderLayout.WEST);
+        add(left, BorderLayout.CENTER);
         add(right, BorderLayout.EAST);
 
 
@@ -68,6 +72,20 @@ public class Panel extends JPanel {
         right.add(minus);
         right.add(divide);
         right.add(multiply);
+
+    }
+
+    private  class Listener implements ActionListener{
+        public void actionPerformed(ActionEvent event){
+
+            Object source = event.getSource();
+            //Double input = Double.parseDouble(calculation.getText());
+
+            if(source == button1)
+            { calculation.setText("1");}
+            else {calculation.setText("1");}
+
+        }
 
     }
 
