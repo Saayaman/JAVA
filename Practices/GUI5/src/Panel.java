@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 
 public class Panel extends JPanel {
 
-        static int counter = 0;
+//        static int counter = 0;
         private JButton button1, button2, button3, button4, button5, button6, button7, button8, button9, buttonDot, button0, buttonEqual;
         private JButton plus, minus, divide, multiply;
         private JTextField calculation;
@@ -40,7 +40,7 @@ public class Panel extends JPanel {
         multiply = new JButton("x");
 
 
-        calculation = new JTextField("0", 20);
+        calculation = new JTextField(null, 20);
 
 
         setLayout(new BorderLayout());
@@ -73,18 +73,86 @@ public class Panel extends JPanel {
         right.add(divide);
         right.add(multiply);
 
+        listener = new Listener();
+        button1.addActionListener(listener);
+        button2.addActionListener(listener);
+        button3.addActionListener(listener);
+        button4.addActionListener(listener);
+        button5.addActionListener(listener);
+        button6.addActionListener(listener);
+        button7.addActionListener(listener);
+        button8.addActionListener(listener);
+        button9.addActionListener(listener);
+        button0.addActionListener(listener);
+        buttonDot.addActionListener(listener);
+        buttonEqual.addActionListener(listener);
+        plus.addActionListener(listener);
+        minus.addActionListener(listener);
+        multiply.addActionListener(listener);
+        divide.addActionListener(listener);
+
     }
+
 
     private  class Listener implements ActionListener{
         public void actionPerformed(ActionEvent event){
 
-            Object source = event.getSource();
+
+           Object source = event.getSource();
+
+            String source2 = calculation.getText();
+            int num;
+
             //Double input = Double.parseDouble(calculation.getText());
 
-            if(source == button1)
-            { calculation.setText("1");}
-            else {calculation.setText("1");}
+//            switch (source){
+//                case "1":  calculation.setText("1");
+//                    break;
+//               default: calculation.setText("1");
+//                   break;
+//            }
 
+
+            if(source == button1)
+                { calculation.setText(source2+"1");
+
+                }
+            else if(source == button2)
+                { calculation.setText(source2+"2"); }
+            else if(source == button3)
+                { calculation.setText(source2+"3"); }
+            else if(source == button4)
+                { calculation.setText(source2+"4"); }
+            else if(source == button5)
+                { calculation.setText(source2+"5"); }
+            else if(source == button6)
+                { calculation.setText(source2+"6"); }
+            else if(source == button7)
+                { calculation.setText(source2+"7"); }
+            else if(source == button8)
+                { calculation.setText(source2+"8"); }
+            else if(source == button9)
+                { calculation.setText(source2+"9"); }
+            else if(source == button0)
+                { calculation.setText(source2+"0"); }
+            else if(source == buttonDot)
+                 { calculation.setText(source2+"."); }
+
+
+            else if(source == plus)
+            { calculation.setText(source2+" + "); }
+            else if(source == minus)
+            { calculation.setText(source2+" - "); }
+            else if (source == multiply)
+            { calculation.setText(source2+" * ");}
+            else if(source == divide)
+            { calculation.setText(source2+" / "); }
+            else {
+                calculation.setText(String.valueOf(source2));
+                System.out.println(source2);
+
+                //!!!画面に乗っているものを全部書き出したい！
+            }
         }
 
     }
