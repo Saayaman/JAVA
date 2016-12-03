@@ -3,6 +3,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+//　失敗
+//　　失敗
+// 失敗！！
+//！！
+
 
 public class Panel3 extends JPanel {
 

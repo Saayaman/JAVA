@@ -5,6 +5,11 @@ import java.awt.event.ActionListener;
 import java.util.Objects;
 
 
+//　失敗
+//　　失敗
+// 失敗！！
+//！！
+
 public class Panel2 extends JPanel {
 
 //        static int counter = 0;
