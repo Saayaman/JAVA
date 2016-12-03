@@ -20,10 +20,10 @@ public class Panel extends JPanel {
         private JLabel labelAnswer;
         private Listener listener;
 
-        private JPanel top = new JPanel();
-        private JPanel left = new JPanel();
-        private JPanel right = new JPanel();
-
+        private JPanel center = new JPanel(new BorderLayout());
+        private JPanel centerCenter = new JPanel(new GridLayout(4,4));
+        private JPanel east = new JPanel(new GridLayout(5,1));
+        private JPanel centerNorth = new JPanel(new GridLayout(1,1));
 
         private Object source;
         private Double num1;
@@ -31,7 +31,7 @@ public class Panel extends JPanel {
         private Double answer = 0.0;
 
         private String getLabel1;
-        private String getOperation;
+        private String gecenterNortheration;
         private String getLabel2;
 
 
@@ -72,39 +72,41 @@ public class Panel extends JPanel {
 
 
         setLayout(new BorderLayout());
-        add(top, BorderLayout.NORTH);
-        add(left, BorderLayout.CENTER);
-        add(right, BorderLayout.EAST);
 
 
-        //top.setLayout(new FlowLayout(FlowLayout.CENTER));
-        left.setLayout(new GridLayout(4,4));
-        right.setLayout(new GridLayout(4,1));
+        //centerNorth.setLayout(new FlowLayout(FlowLayout.CENTER));
 
-        top.add(labelArea1);
-        top.add(labelOperation);
-        top.add(labelArea2);
-        top.add(labelEquals);
-        top.add(labelAnswer);
-        top.add(buttonClear);
+        centerNorth.add(labelArea1);
+        centerNorth.add(labelOperation);
+        centerNorth.add(labelArea2);
+        centerNorth.add(labelEquals);
+        centerNorth.add(labelAnswer);
 
-        left.add(button1);
-        left.add(button2);
-        left.add(button3);
-        left.add(button4);
-        left.add(button5);
-        left.add(button6);
-        left.add(button7);
-        left.add(button8);
-        left.add(button9);
-        left.add(buttonDot);
-        left.add(button0);
-        left.add(buttonEqual);
 
-        right.add(plus);
-        right.add(minus);
-        right.add(divide);
-        right.add(multiply);
+        centerCenter.add(button1);
+        centerCenter.add(button2);
+        centerCenter.add(button3);
+        centerCenter.add(button4);
+        centerCenter.add(button5);
+        centerCenter.add(button6);
+        centerCenter.add(button7);
+        centerCenter.add(button8);
+        centerCenter.add(button9);
+        centerCenter.add(buttonDot);
+        centerCenter.add(button0);
+        centerCenter.add(buttonEqual);
+
+        east.add(buttonClear);
+        east.add(plus);
+        east.add(minus);
+        east.add(divide);
+        east.add(multiply);
+
+
+        add(east, BorderLayout.EAST);
+        add(center, BorderLayout.CENTER);
+        center.add(centerCenter, BorderLayout.CENTER);
+        add(centerNorth, BorderLayout.NORTH);
 
         listener = new Listener();
         button1.addActionListener(listener);
@@ -134,16 +136,16 @@ public class Panel extends JPanel {
             source = event.getSource();
             getLabel1 = labelArea1.getText();
             getLabel2 = labelArea2.getText();
-            getOperation = labelOperation.getText();
+            gecenterNortheration = labelOperation.getText();
 
 
-            if (getOperation.equals("?")){
+            if (gecenterNortheration.equals("?")){
                 //if the operation is not filled, do this
 
                 if (source == plus || source == minus || source == multiply || source == divide) {
 
                     //first set num
-                    setOperation1();
+                    secenterNortheration1();
                 }
 
                 else if(source == buttonEqual) {
@@ -167,7 +169,7 @@ public class Panel extends JPanel {
 
                     //first set num
                     System.out.println("operation2");
-                    setOperation1();
+                    secenterNortheration1();
                 }
 
                 else if(source == buttonEqual) {
@@ -305,7 +307,7 @@ public class Panel extends JPanel {
 
 
 
-    private void setOperation1() {
+    private void secenterNortheration1() {
 
             if(source == plus) {
 
@@ -353,13 +355,13 @@ public class Panel extends JPanel {
             labelArea2.setText(String.valueOf(0));
             answer = num1+num2;
             labelAnswer.setText(String.valueOf(answer));
-            if (getOperation.equals("?")){
+            if (gecenterNortheration.equals("?")){
                 labelOperation.setText("+");
             }
 
         } else {
 
-//            switch (getOperation){
+//            switch (gecenterNortheration){
 //                case "+": answer = num1+num2;
 //                    break;
 //                case "-": answer = num1-num2;
@@ -369,11 +371,11 @@ public class Panel extends JPanel {
 //                case "/": answer = num1/num2;
 //            }
 
-            if (getOperation.equals("+")){
+            if (gecenterNortheration.equals("+")){
                 answer = num1+num2;
-            } else if (getOperation.equals("-")){
+            } else if (gecenterNortheration.equals("-")){
                 answer = num1-num2;
-            } else if(getOperation.equals("*")){
+            } else if(gecenterNortheration.equals("*")){
                 answer = num1*num2;
             } else {
                 answer = num1/num2;

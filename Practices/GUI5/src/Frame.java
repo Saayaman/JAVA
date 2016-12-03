@@ -17,6 +17,7 @@ public class Frame {
 //        Dimension d = new Dimension(100,40);
 
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        frame.setResizable(false);
         frame.getContentPane().add(panel);
         frame.pack();
         frame.setVisible(true);
