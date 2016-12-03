@@ -1,38 +1,38 @@
 import javax.swing.*;
-import javax.swing.text.DateFormatter;
-import javax.swing.text.html.ObjectView;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.geom.Arc2D;
-import java.util.Objects;
+
 
 
 public class Panel extends JPanel {
 
-        //static int counter = 0;
-        private JButton button1, button2, button3, button4, button5, button6, button7, button8, button9, buttonDot, button0, buttonEqual;
-        private JButton plus, minus, divide, multiply, buttonClear;
-        private JLabel labelArea1;
-        private JLabel labelOperation;
-        private JLabel labelArea2;
-        private JLabel labelEquals;
-        private JLabel labelAnswer;
-        private Listener listener;
+    //static int counter = 0;
+    private JButton button1, button2, button3, button4, button5, button6, button7, button8, button9, buttonDot, button0, buttonEqual;
+    private JButton plus, minus, divide, multiply, buttonClear;
+    private JLabel labelArea1;
+    private JLabel labelOperation;
+    private JLabel labelArea2;
+    private JLabel labelEquals;
+    private JLabel labelAnswer;
+    private Listener listener;
 
-        private JPanel center = new JPanel(new BorderLayout());
-        private JPanel centerCenter = new JPanel(new GridLayout(4,4));
-        private JPanel east = new JPanel(new GridLayout(5,1));
-        private JPanel centerNorth = new JPanel(new GridLayout(1,1));
+    private JPanel center = new JPanel(new BorderLayout());
+    private JPanel centerCenter = new JPanel(new GridLayout(4,4));
+    private JPanel east = new JPanel(new GridLayout(5,1));
+    private JPanel centerNorth = new JPanel(new GridLayout(1,1));
 
-        private Object source;
-        private Double num1;
-        private Double num2;
-        private Double answer = 0.0;
+    private Object source;
+    private Double num1;
+    private Double num2;
+    private Double answer;
 
-        private String getLabel1;
-        private String getOperation;
-        private String getLabel2;
+    private String getLabel1;
+    private String getOperation;
+    private String getLabel2;
+    private String getAnswer;
+
+    private boolean flagEqual;
 
 
     public Panel(){
@@ -65,7 +65,7 @@ public class Panel extends JPanel {
         labelArea2 = new JLabel("   ");
         labelEquals = new JLabel("=");
         labelAnswer = new JLabel("??");
-        
+
         //labelArea1.setSize(100, 100);
         //labelArea1.setBorder();
         //labelArea1.setForeground(new java.awt.Color(255, 255,255));
@@ -137,33 +137,23 @@ public class Panel extends JPanel {
             getLabel1 = labelArea1.getText();
             getLabel2 = labelArea2.getText();
             getOperation = labelOperation.getText();
+            getAnswer = labelAnswer.getText();
 
 
-            if (getOperation.equals("?")){
-                //if the operation is not filled, do this
+            if (answer != null){
 
-                if (source == plus || source == minus || source == multiply || source == divide) {
+                System.out.println(answer);
+                //if there is an answer
+                num1 = answer;
+                num2 = null;
+                labelArea1.setText(String.valueOf(answer));
+                labelArea2.setText(String.valueOf(""));
+                labelAnswer.setText("");
+                answer = null;
 
-                    //first set num
-                    setOperation1();
-                }
 
-                else if(source == buttonEqual) {
 
-                    setEquals();
 
-                } else if (source == buttonClear){
-
-                    setClear();
-
-                } else {
-
-                    //buttons from 0~9
-                    buttonAction(event);
-
-                }
-
-            } else {
 
                 if (source == plus || source == minus || source == multiply || source == divide) {
 
@@ -184,10 +174,64 @@ public class Panel extends JPanel {
 
                     //buttons from 0~9
                     buttonAction2(event);
-                    System.out.println("else!");
                 }
+
+
+            } else { //flag == false
+                System.out.println(flagEqual);
+
+                if (getOperation.equals("?")){
+                    //if the operation is not filled, do this
+
+                    if (source == plus || source == minus || source == multiply || source == divide) {
+
+                        //first set num
+                        setOperation1();
+                    }
+
+                    else if(source == buttonEqual) {
+
+                        setEquals();
+
+                    } else if (source == buttonClear){
+
+                        setClear();
+
+                    } else {
+
+                        //buttons from 0~9
+                        buttonAction(event);
+
+                    }
+
+                } else {
+
+                    if (source == plus || source == minus || source == multiply || source == divide) {
+
+                        //first set num
+                        setOperation1();
+                    }
+
+                    else if(source == buttonEqual) {
+
+                        setEquals();
+
+                    } else if (source == buttonClear){
+
+                        setClear();
+
+                    } else {
+
+                        //buttons from 0~9
+                        buttonAction2(event);
+                    }
+                }
+
+
             }
 
+            if (source == buttonEqual){flagEqual = true;}
+            else { flagEqual = false; }
 
 
         }
@@ -309,27 +353,27 @@ public class Panel extends JPanel {
 
     private void setOperation1() {
 
-            if(source == plus) {
+        if(source == plus) {
 
-                labelOperation.setText("+");
-            }
-            else if(minus == source) {
+            labelOperation.setText("+");
+        }
+        else if(minus == source) {
 
-                labelOperation.setText("-");
+            labelOperation.setText("-");
 
-            }
-            else if (source == multiply){
+        }
+        else if (source == multiply){
 
-                labelOperation.setText("*");
+            labelOperation.setText("*");
 
-            }
-            else if(source == divide) {
+        }
+        else if(source == divide) {
 
-                labelOperation.setText("/");
-            }
-            else {
-                System.out.println("Sthing is wrong");
-            }
+            labelOperation.setText("/");
+        }
+        else {
+            System.out.println("Sthing is wrong");
+        }
 
 
 
@@ -350,7 +394,7 @@ public class Panel extends JPanel {
 
             labelOperation.setText("+");
         }
-         else if (num2 == null){
+        else if (num2 == null){
             num2 = 0.0;
             labelArea2.setText(String.valueOf(0));
             answer = num1+num2;
@@ -361,26 +405,16 @@ public class Panel extends JPanel {
 
         } else {
 
-//            switch (getOperation){
-//                case "+": answer = num1+num2;
-//                    break;
-//                case "-": answer = num1-num2;
-//                    break;
-//                case "*": answer = num1*num2;
-//                    break;
-//                case "/": answer = num1/num2;
-//            }
-
-            if (getOperation.equals("+")){
-                answer = num1+num2;
-            } else if (getOperation.equals("-")){
-                answer = num1-num2;
-            } else if(getOperation.equals("*")){
-                answer = num1*num2;
-            } else {
-                answer = num1/num2;
+            switch (getOperation){
+                case "+": answer = num1+num2;
+                    break;
+                case "-": answer = num1-num2;
+                    break;
+                case "*": answer = num1*num2;
+                    break;
+                case "/": answer = num1/num2;
+                    break;
             }
-
             labelAnswer.setText(String.valueOf(answer));
         }
 
@@ -392,7 +426,7 @@ public class Panel extends JPanel {
 
         num1 = null;
         num2 = null;
-        answer = 0.0;
+        answer = null;
 
         labelArea1.setText("");
         labelArea2.setText("");
