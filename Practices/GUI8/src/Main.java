@@ -33,23 +33,23 @@ public class Main {
         Double input3 = scan.nextDouble();
         savAccount.deposit(input3);
 
-        System.out.println("Your account info right now:");
+        System.out.println("\nYour account info right now:");
         printResult();
 
         savAccount.recalculateBalance();
         //this includes printing out as well
 
 
-        System.out.println("How much do you want to withdraw from cheqing? ");
+        System.out.println("\nHow much do you want to withdraw from cheqing? ");
         Double input4 = scan.nextDouble();
-        cheqAccount.withdraw2(input4);
+        cheqAccount.withdraw(input4);
 
         System.out.println("How much do you want to withdraw from savings? ");
         Double input5 = scan.nextDouble();
-        savAccount.withdraw3(input5);
+        savAccount.withdraw(input5);
 
 
-        System.out.println("Your account info right now:");
+        System.out.println("\nYour account info right now:");
         printResult();
 
     }
@@ -58,16 +58,17 @@ public class Main {
     public static void makeAccount(){
 
 
-        cheqAccount = new CheckingAccount();
-        savAccount = new SavingsAccount();
+        cheqAccount = new CheckingAccount(100, 0);
+        //MINIMUM deposit, balance
+
+        savAccount = new SavingsAccount(5, 0);
+        //interestrate, balance
 
         cheqAccount.accountNumber();
-        cheqAccount.setMINIMUM_BALANCE(100);
         cheqAccount.overDraftFee();
 
 
         savAccount.accountNumber();
-        savAccount.setInterestRate((double) 5);
 
     }
 
@@ -75,11 +76,6 @@ public class Main {
 
         System.out.println("\n" +cheqAccount);
         System.out.println("\n" +savAccount);
-
-//        System.out.println("Cheqing Balance is: $"+cheqAccount.balance);
-//        System.out.println("Cheqing Account No. is: "+cheqAccount.accountNumber);
-//        System.out.println("Savings Balance is: $"+savAccount.balance);
-//        System.out.println("Savings Account No. is: "+savAccount.accountNumber);
 
     }
 

@@ -1,0 +1,10 @@
+
+// Java Must Know words
+
+
+1. Difference between abstract and polymorphism.
+2. What is big o notation?
+3. Extends and inheritance
+4. What is a MVC model?
+5. What is Casting?
+6. 

@@ -13,5 +13,5 @@ public interface onCreatureBirth {
     //you can ONLY do FUNCTIONS in an interface
     //NO curly braces
 
-    
+
 }

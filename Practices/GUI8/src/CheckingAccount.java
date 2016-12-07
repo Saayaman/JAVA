@@ -7,24 +7,22 @@ public class CheckingAccount extends Account {
     private int OVERDRAFT_FEE;
 
 
-    public void CheckingAccount(int MINIMUM_BALANCE){
+    public CheckingAccount(int MINIMUM_BALANCE, double balance){
 
+        super(balance);
         this.MINIMUM_BALANCE = MINIMUM_BALANCE;
         this.OVERDRAFT_FEE = overDraftFee();
-
 }
 
-
-    public void setMINIMUM_BALANCE(int i){
-        MINIMUM_BALANCE = i;
-    }
+//
+//    public void setMINIMUM_BALANCE(int i){
+//        MINIMUM_BALANCE = i;
+//    }
 
     public int overDraftFee() {
 
-
         if(balance < (double)MINIMUM_BALANCE){
-
-            OVERDRAFT_FEE = (int) ((MINIMUM_BALANCE - balance) * 0.05);
+            OVERDRAFT_FEE = (int) ((MINIMUM_BALANCE - balance) * 0.03);
         }else {
             OVERDRAFT_FEE = 0;
         }
@@ -33,10 +31,9 @@ public class CheckingAccount extends Account {
     }
 
 
-    public void withdraw2(int inputs){
-        super.withdraw((double)inputs);
+    public void withdraw(Double inputs){
+        super.withdraw(inputs);
     }
-
 
 
     public String toString() {

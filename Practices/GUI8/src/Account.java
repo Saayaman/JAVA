@@ -1,3 +1,6 @@
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+
 /**
  * Created by ayako_sayama on 2016/12/05.
  */
@@ -5,17 +8,18 @@ public abstract class Account {
 
     protected int accountNumber;
     protected double balance;
-    public double inputs;
+//    public double inputs;
+    DecimalFormat df = new DecimalFormat("#.##");
 
 
-    public void Account(double deposit){
+    public Account(double deposit){
         deposit(deposit);
         accountNumber();
 
     }
 
     public void withdraw(double inputs){
-        balance -= this.inputs;
+        balance -= inputs;
     }
 
 
@@ -30,7 +34,8 @@ public abstract class Account {
 
 
     public String toString() {
-        return "accountNumber= " + accountNumber + "\nbalance= $" + balance;
+
+        return "accountNumber= " + accountNumber + "\nbalance= $" + df.format(balance);
     }
 
 
