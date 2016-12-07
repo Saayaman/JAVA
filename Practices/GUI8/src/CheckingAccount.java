@@ -14,7 +14,7 @@ public class CheckingAccount extends Account {
         this.OVERDRAFT_FEE = overDraftFee();
 }
 
-//
+
 //    public void setMINIMUM_BALANCE(int i){
 //        MINIMUM_BALANCE = i;
 //    }
@@ -33,6 +33,7 @@ public class CheckingAccount extends Account {
 
     public void withdraw(Double inputs){
         super.withdraw(inputs);
+        overDraftFee();
     }
 
 

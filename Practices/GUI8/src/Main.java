@@ -28,10 +28,12 @@ public class Main {
         System.out.println("How much deposit to cheqing account? ");
         Double input2 = scan.nextDouble();
         cheqAccount.deposit(input2);
+        cheqAccount.overDraftFee();
 
         System.out.println("How much deposit to savings account");
         Double input3 = scan.nextDouble();
         savAccount.deposit(input3);
+
 
         System.out.println("\nYour account info right now:");
         printResult();
@@ -57,19 +59,14 @@ public class Main {
 
     public static void makeAccount(){
 
-
         cheqAccount = new CheckingAccount(100, 0);
-        //MINIMUM deposit, balance
+        //MINIMUM balance, balance
 
         savAccount = new SavingsAccount(5, 0);
         //interestrate, balance
 
         cheqAccount.accountNumber();
-        cheqAccount.overDraftFee();
-
-
         savAccount.accountNumber();
-
     }
 
     private static void printResult() {

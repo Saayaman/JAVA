@@ -19,6 +19,7 @@ public abstract class Account {
     }
 
     public void withdraw(double inputs){
+
         balance -= inputs;
     }
 
