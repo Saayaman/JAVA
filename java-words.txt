@@ -7,4 +7,4 @@
 3. Extends and inheritance
 4. What is a MVC model?
 5. What is Casting?
-6. 
+6. Difference between static,

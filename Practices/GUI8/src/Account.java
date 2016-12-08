@@ -18,10 +18,9 @@ public abstract class Account {
 
     }
 
-    public void withdraw(double inputs){
 
-        balance -= inputs;
-    }
+    public abstract void withdraw(double inputs);
+    //abstract has no () arguments!!
 
 
     public void deposit(double deposit){

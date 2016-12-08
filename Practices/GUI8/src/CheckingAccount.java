@@ -1,5 +1,3 @@
-
-
 public class CheckingAccount extends Account {
 
 
@@ -31,11 +29,11 @@ public class CheckingAccount extends Account {
     }
 
 
-    public void withdraw(Double inputs){
-        super.withdraw(inputs);
+
+    public void withdraw(double inputs) {
+        balance -= inputs;
         overDraftFee();
     }
-
 
     public String toString() {
         return "CheckingAcount: " + "\n" + super.toString() +

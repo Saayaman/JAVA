@@ -14,14 +14,14 @@ public class SavingsAccount extends Account {
     }
 
     public void withdraw(double inputs){
-       super.withdraw(inputs);
+        balance -= inputs;
     }
 
 
     public void recalculateBalance(){
         System.out.println("\nAnnual Savings Account Balance");
         for (i = 1; i < 13; i++){
-            balance += (balance * (interestRate / 100));
+            balance += (balance * (interestRate / 12 / 100));
             System.out.println("Month"+ i+": $"+ df.format(balance));
         }
     }
