@@ -5,4 +5,11 @@ public abstract class Animal implements onCreatureBirth {
     protected String name  ="";
     protected boolean cute;
 
+    @Override
+    public String toString() {
+        return "Animal{" +
+                "name='" + name + '\'' +
+                ", cute=" + cute +
+                '}';
+    }
 }

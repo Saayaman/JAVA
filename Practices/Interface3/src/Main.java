@@ -8,16 +8,15 @@ import java.awt.*;
 public class Main {
 
 
-    //public static DefaultTableModel pets;
+//    public static DefaultTableModel pets;
 
 
-    DefaultTableModel pets;
+    //DefaultTableModel pets;
 
     public static void main(String[] args) {
 
 
         View view = new View();
-        view.view();
 
         Animal[] animals = new Animal[]
 
@@ -30,7 +29,7 @@ public class Main {
 
 
         for (int i = 0; i < animals.length; i++) {
-            view.pets.addRow(
+            view.addRow(
                     new Object[]{
                             animals[i].getName(),
                             animals[i].getAge(),

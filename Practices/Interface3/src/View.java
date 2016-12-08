@@ -16,9 +16,44 @@ public class View extends Main{
     private Object source;
 
     private JButton addPet;
+    private DefaultTableModel pets;
 
+    public View() {
+        view2();
+    }
 
-   public void view(){
+    private void view2() {
+
+        String[][] tabledata = {
+                {"日本", "3勝", "0敗", "1分"},
+                {"クロアチア", "3勝", "1敗", "0分"},
+                {"ブラジル", "1勝", "2敗", "1分"},
+                {"オーストラリア", "2勝", "2敗", "0分"}};
+        String[] columnNames = {"COUNTRY", "WIN", "LOST", "EVEN"};
+
+        JFrame test = new JFrame("SwingTest");
+
+        test.setTitle("aaa");
+        test.setBounds( 10, 10, 300, 200);
+
+        DefaultTableModel tableModel
+                = new DefaultTableModel(tabledata, columnNames);
+
+        JTable table = new JTable(tableModel);
+
+        JScrollPane sp = new JScrollPane(table);
+        sp.setPreferredSize(new Dimension(250, 70));
+
+        JPanel p = new JPanel();
+        p.add(sp);
+
+        test.getContentPane().add(p, BorderLayout.CENTER);
+
+        test.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        test.setVisible(true);
+    }
+
+   private void view(){
 
        JFrame frame = new JFrame("Pets Database");
        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -35,9 +70,9 @@ public class View extends Main{
        //adding panels
        JPanel tablePanel = new JPanel(new BorderLayout());
        JPanel inputPanel = new JPanel(new CardLayout());
-       //JPanel buttonPanel = new JPanel(new BorderLayout());
+       JPanel buttonPanel = new JPanel(new BorderLayout());
 
-       panel.add(tablePanel, BorderLayout.NORTH);
+       panel.add(tablePanel, BorderLayout.CENTER);
        panel.add(inputPanel, BorderLayout.SOUTH);
        //inputPanel.add(buttonPanel, BorderLayout.SOUTH);
        //2パネルと上と下に配置 / ボタンパネルを inputPanel の下に配置
@@ -47,7 +82,7 @@ public class View extends Main{
        JTable table = new JTable(new DefaultTableModel(petColumns,0));
        JScrollPane scrollPane = new JScrollPane(table);
        scrollPane.setPreferredSize(new Dimension(480,480));
-       DefaultTableModel pets = (DefaultTableModel)table.getModel();
+       pets = (DefaultTableModel)table.getModel();
        //scrollPane.add(table);
        //scrollable panel
 
@@ -69,6 +104,10 @@ public class View extends Main{
        addPet.addActionListener(listener);
 
 
+   }
+
+   public void addRow(Object[] row) {
+       pets.addRow(row);
    }
 
 

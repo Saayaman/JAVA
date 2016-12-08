@@ -1,7 +1,7 @@
 /**
  * Created by ayako_sayama on 2016/12/06.
  */
-public class Dog extends Animal implements onCreatureBirthnBirth {
+public class Dog extends Animal implements onCreatureBirth{
 
     private String name="";
 
