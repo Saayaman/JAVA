@@ -17,7 +17,7 @@ public class CheckingAccount extends Account {
 //        MINIMUM_BALANCE = i;
 //    }
 
-    public int overDraftFee() {
+    private int overDraftFee() {
 
         if(balance < (double)MINIMUM_BALANCE){
             OVERDRAFT_FEE = (int) ((MINIMUM_BALANCE - balance) * 0.03);
@@ -28,13 +28,19 @@ public class CheckingAccount extends Account {
         return OVERDRAFT_FEE;
     }
 
+    @Override
+    public void deposit(double amount) {
+        super.deposit(amount);
+        overDraftFee();
+    }
 
-
+    @Override
     public void withdraw(double inputs) {
         balance -= inputs;
         overDraftFee();
     }
 
+    @Override
     public String toString() {
         return "CheckingAcount: " + "\n" + super.toString() +
                 "\nMINIMUM_BAALANCE= $" + MINIMUM_BALANCE +
