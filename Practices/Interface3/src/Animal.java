@@ -41,4 +41,14 @@ public abstract class Animal {
 
     public abstract boolean sound(boolean sound);
 
+    public void setSound(boolean sound){
+        this.sound = sound;
+    }
+
+    public boolean getSound(){
+        return sound;
+    }
+
+
+
 }
