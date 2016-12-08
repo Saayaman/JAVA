@@ -28,7 +28,6 @@ public class Main {
         System.out.println("How much deposit to cheqing account? ");
         Double input2 = scan.nextDouble();
         cheqAccount.deposit(input2);
-        cheqAccount.overDraftFee();
 
         System.out.println("How much deposit to savings account");
         Double input3 = scan.nextDouble();
