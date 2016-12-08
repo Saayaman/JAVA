@@ -21,4 +21,6 @@ public class Cat extends Animal implements onCreatureBirth {
     public boolean isSomething() {
         return false;
     }
+
+
 }

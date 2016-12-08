@@ -10,9 +10,16 @@ public class Driver {
         Cat cat = new Cat("Meny", true);
         Dog dog = new Dog("Lucky", false);
 
-        cat.toString();
-        dog.toString();
 
-        onCreatureBirth[] creatureBirths = new Animal[](cat, dog);
+        onCreatureBirth[] creatureBirths = new Animal[]{cat, dog};
+
+        System.out.println(cat);
+        System.out.println(dog);
+
+
+        System.out.println(creatureBirths[0]);
+
 
     }
+
+}
