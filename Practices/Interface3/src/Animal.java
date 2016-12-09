@@ -18,6 +18,9 @@ public abstract class Animal {
     }
 
 
+    public String getType() {
+        return type;
+    }
 
     public void setType(String t) {
         this.type = t;

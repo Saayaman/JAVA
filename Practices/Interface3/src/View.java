@@ -4,6 +4,7 @@ import javax.xml.bind.Marshaller;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 
 import static java.awt.BorderLayout.*;
 
@@ -15,7 +16,7 @@ public class View{
     private JButton addPet;
     private DefaultTableModel pets;
     private Object source;
-    //private addPetListner;
+//    private ActionListener petListener;
 
     private JComboBox inputType;
     private JTextField inputName;
@@ -23,38 +24,18 @@ public class View{
     private JRadioButton soundYes;
     private JRadioButton soundNo;
 
-    public int animalNumber = 0;
+    public static int animalNumber = 0;
+    public static Animal[] animals = new Animal[100];
 
     public View() {
         view();
     }
 
-//    private void view2() {
-//
-//        String[] columnNames = {"Type", "Name", "Age", "Sound"};
-//
 //        JFrame petsFrame = new JFrame("Pets Database");
 //        //petsFrame.setTitle("aaa"); >> you can set Title here, but also inside the JFrame('');
 //
 //        petsFrame.setBounds( 10, 10, 300, 200);
 //        //setBounds(x.from mac screen, y.from mac screen, x.size, y.size)
-//
-//        DefaultTableModel tableModel
-//                = new DefaultTableModel(columnNames,0);
-//
-//        JTable table = new JTable(tableModel);
-//
-//        JScrollPane sp = new JScrollPane(table);
-//        sp.setPreferredSize(new Dimension(250, 70));
-//
-//        JPanel p = new JPanel();
-//        p.add(sp);
-//
-//        petsFrame.getContentPane().add(p, BorderLayout.CENTER);
-//
-//        petsFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        petsFrame.setVisible(true);
-//    }
 
 
    private void view(){
@@ -89,12 +70,7 @@ public class View{
        JScrollPane scrollPane = new JScrollPane(table);
        scrollPane.setPreferredSize(new Dimension(480,480));
 
-       //scrollPane.add(table);
-       //scrollable panel
-
-
        addPet = new JButton("Add to List");
-
 
        //スライドで選択
        String[] animalType = {"Cat", "Dog" };
@@ -119,7 +95,7 @@ public class View{
        inputPanel.add(soundNo);
        buttonPanel.add(addPet);
 
-        addPet.addActionListener(addPetListner);
+        addPet.addActionListener(addPetListener);
 
        frame.getContentPane().add(panel);
        frame.pack();
@@ -128,74 +104,76 @@ public class View{
    }
 
 
-    public void addRow(Object[] row) {
-       pets.addRow(row);
+    public void addRow(Object[] animalRow) {
+       pets.addRow(animalRow);
    }
 
-    private ActionListener addPetListner = new ActionListener() {
+    private ActionListener addPetListener = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent event) {
 
-            animalNumber++;
-
+//            animalNumber++;
             source = event.getSource();
-            Animal[] animals = new Animal[animalNumber];
+
+//            Animal[] cat = new Cat();
 
             String animalType = (String) inputType.getSelectedItem();
             String animalName = inputName.getText();
             int animalAge = Integer.parseInt(inputAge.getText());
-            boolean noiseTrue = Boolean.parseBoolean(soundYes.getText());
-            boolean noiseFalse = Boolean.parseBoolean(soundNo.getText());
+            boolean noise = soundYes.isSelected();
 
-            if (inputType.equals("cat")) {
-                animals[animalNumber] = new Cat(animalType, animalName, animalAge, true);
+            System.out.println(animalType);
+
+//            if(noise){ }
+//              else { }
+
+            if (animalType.equalsIgnoreCase("cat")) {
+
+                animals[animalNumber] = new Cat(animalType, animalName, animalAge, noise);
 
             } else {
-                animals[animalNumber] = new Dog(animalType, animalName, animalAge, true);
+                animals[animalNumber] = new Dog(animalType, animalName, animalAge, noise);
             }
 
+
+
+//            System.out.println(Arrays.toString(animals));
+
+
+//            for (int i = 0; i < View.animalNumber; i++) {
+//                addRow(animals);
+                System.out.println(Arrays.toString(animals));
+
+                     addRow(new Object[]{
+
+                                animals[View.animalNumber].getType(),
+                                animals[View.animalNumber].getName(),
+                                animals[View.animalNumber].getAge(),
+                                animals[View.animalNumber].getSound(),
+
+                     });
+//            }
+
+            animalNumber++;
 
         }
 
     };
-            //animalTyp
 
-            //Animal animal = new Animal(animalType, animalName, animalAge, true);
-//            animal.setType(animalType);
-//            animal.setName(animalName);
-//            animal.setAge(animalAge);
-//            animal.setSound(true);
-
- }
+//                        new Object[]{
+//                                animals[i].getType(),
+//                                animals[i].getName(),
+//                                animals[i].getAge(),
+//                                animals[i].getSound(),
+//                        }
 
 
+
+//    public int getAnimalNumber(){
 //
-//    public void AddPet(){
-//
-//        AddPet addPetListner = new AddPet();
-//        addPet.addActionListener(addPetListner);
-//
+//        return animalNumber;
 //    }
 
 
-//    public class AddPet implements ActionListener {
-//
-//
-//        private Object source;
-//
-//
-//        public void actionPerformed(ActionEvent event){
-//
-//            source = event.getSource();
-//            System.out.println(source);
-//            String animalType = inputType.getText();
-//
-//        }
-//
-//    }
-
-
-
-
-
+}
 

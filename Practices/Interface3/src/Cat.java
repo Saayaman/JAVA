@@ -17,7 +17,7 @@ public class Cat extends Animal {
     public String toString() {
         return "Cat name:"+ super.name +
 
-                "type: '" + super.type + '\'' +
+                ", type: '" + super.type + '\'' +
                 ", age: '" + super.age + '\'' +
                 ", sound:"  + super.sound +
                 '}';
