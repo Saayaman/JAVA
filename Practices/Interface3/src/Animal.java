@@ -3,10 +3,12 @@
  */
 public abstract class Animal {
 
-    private String type;
-    private String name;
-    private int age;
+    protected String type;
+    protected String name;
+    protected int age;
     protected boolean sound;
+
+
 
     public Animal(String type, String name, int age, boolean sound) {
         this.type = type;
@@ -15,12 +17,10 @@ public abstract class Animal {
         this.sound = sound;
     }
 
-    public String getType() {
-        return type;
-    }
 
-    public void setType(String type) {
-        this.type = type;
+
+    public void setType(String t) {
+        this.type = t;
     }
 
     public String getName() {
@@ -50,5 +50,13 @@ public abstract class Animal {
     }
 
 
-
+    @Override
+    public String toString() {
+        return "Animal{" +
+                "type='" + type + '\'' +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                ", sound=" + sound +
+                '}';
+    }
 }

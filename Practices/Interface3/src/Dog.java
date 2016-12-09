@@ -14,10 +14,10 @@ public class Dog extends Animal {
 
     @Override
     public String toString() {
-        return "Dog name:"+ super.getName()+
+        return "Dog name:"+ super.name +
 
-                    "type: '" + super.getType() + '\'' +
-                    ", age: '" + super.getAge() + '\'' +
+                    "type: '" + super.type + '\'' +
+                    ", age: '" + super.age + '\'' +
                     ", sound:"  + super.sound +
                     '}';
     }

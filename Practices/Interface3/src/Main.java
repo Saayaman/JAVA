@@ -8,37 +8,34 @@ import java.awt.*;
 public class Main {
 
 
-//    public static DefaultTableModel pets;
-
-
-    //DefaultTableModel pets;
-
     public static void main(String[] args) {
 
 
         View view = new View();
 
-        Animal[] animals = new Animal[]
+        int animalNumber;
 
-                {
-                        new Dog("husky", "Max", 2, true),
-                        new Cat("mike", "Tama", 4, true),
-                };
+//          Animal[] animals = new Animal[]{};
+//
+//                {
+//                        new Dog("husky", "Max", 2, true),
+//                        new Cat("mike", "Tama", 4, true),
+//                };
 
-        System.out.println(animals[0]);
-
-
+//        System.out.println(animals[0]);
+//
+//
         for (int i = 0; i < animals.length; i++) {
             view.addRow(
                     new Object[]{
+                            animals[i].getType(),
                             animals[i].getName(),
                             animals[i].getAge(),
                             animals[i].getSound(),
-                            animals[i].getType()
                     });
-
         }
 
+        System.out.println();
 
 
 

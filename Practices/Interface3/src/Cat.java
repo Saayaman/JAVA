@@ -12,4 +12,15 @@ public class Cat extends Animal {
         return true;
     }
 
+
+    @Override
+    public String toString() {
+        return "Cat name:"+ super.name +
+
+                "type: '" + super.type + '\'' +
+                ", age: '" + super.age + '\'' +
+                ", sound:"  + super.sound +
+                '}';
+    }
+
 }
