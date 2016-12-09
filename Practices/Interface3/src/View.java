@@ -31,12 +31,6 @@ public class View{
         view();
     }
 
-//        JFrame petsFrame = new JFrame("Pets Database");
-//        //petsFrame.setTitle("aaa"); >> you can set Title here, but also inside the JFrame('');
-//
-//        petsFrame.setBounds( 10, 10, 300, 200);
-//        //setBounds(x.from mac screen, y.from mac screen, x.size, y.size)
-
 
    private void view(){
 
@@ -112,10 +106,7 @@ public class View{
         @Override
         public void actionPerformed(ActionEvent event) {
 
-//            animalNumber++;
             source = event.getSource();
-
-//            Animal[] cat = new Cat();
 
             String animalType = (String) inputType.getSelectedItem();
             String animalName = inputName.getText();
@@ -123,9 +114,6 @@ public class View{
             boolean noise = soundYes.isSelected();
 
             System.out.println(animalType);
-
-//            if(noise){ }
-//              else { }
 
             if (animalType.equalsIgnoreCase("cat")) {
 
@@ -135,13 +123,6 @@ public class View{
                 animals[animalNumber] = new Dog(animalType, animalName, animalAge, noise);
             }
 
-
-
-//            System.out.println(Arrays.toString(animals));
-
-
-//            for (int i = 0; i < View.animalNumber; i++) {
-//                addRow(animals);
                 System.out.println(Arrays.toString(animals));
 
                      addRow(new Object[]{
@@ -152,28 +133,11 @@ public class View{
                                 animals[View.animalNumber].getSound(),
 
                      });
-//            }
 
             animalNumber++;
 
         }
 
     };
-
-//                        new Object[]{
-//                                animals[i].getType(),
-//                                animals[i].getName(),
-//                                animals[i].getAge(),
-//                                animals[i].getSound(),
-//                        }
-
-
-
-//    public int getAnimalNumber(){
-//
-//        return animalNumber;
-//    }
-
-
 }
 
