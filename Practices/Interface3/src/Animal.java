@@ -44,10 +44,6 @@ public abstract class Animal {
         return sound;
     }
 
-    public static boolean sameType() {
-        return true;
-    }
-
     @Override
     public String toString() {
         return "Animal{" +
