@@ -3,21 +3,9 @@
  */
 public class Dog extends Animal {
 
-    public Dog(String type, String name, int age, boolean sound){
-        super(type, name, age, true);
+    public static final String TYPE = "Dog";
 
-    }
-
-    public boolean sound(boolean sound){
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "Dog name:"+ super.name +
-                    ", type: '" + super.type + '\'' +
-                    ", age: '" + super.age + '\'' +
-                    ", sound:"  + super.sound +
-                    '}';
+    public Dog(String name, int age, boolean sound){
+        super(TYPE, name, age, sound);
     }
 }

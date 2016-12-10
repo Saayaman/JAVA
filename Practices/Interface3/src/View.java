@@ -67,7 +67,10 @@ public class View{
        addPet = new JButton("Add to List");
 
        //スライドで選択
-       String[] animalType = {"Cat", "Dog" };
+       String[] animalType = {
+               Cat.TYPE,
+               Dog.TYPE
+       };
        inputType = new JComboBox(animalType);
        inputName = new JTextField("Name");
        inputAge = new JTextField("Age");
@@ -115,24 +118,28 @@ public class View{
 
             System.out.println(animalType);
 
-            if (animalType.equalsIgnoreCase("cat")) {
-
-                animals[animalNumber] = new Cat(animalType, animalName, animalAge, noise);
-
-            } else {
-                animals[animalNumber] = new Dog(animalType, animalName, animalAge, noise);
+            Animal addAnimal = null;
+            switch (animalType) {
+                case Cat.TYPE:
+                    addAnimal = new Cat(animalName, animalAge, noise);
+                    break;
+                case Dog.TYPE:
+                    addAnimal = new Dog(animalName, animalAge, noise);
+                    break;
             }
 
-                System.out.println(Arrays.toString(animals));
+            if (addAnimal != null) {
+                animals[animalNumber] = addAnimal;
+            }
 
-                     addRow(new Object[]{
+            System.out.println(Arrays.toString(animals));
 
-                                animals[View.animalNumber].getType(),
-                                animals[View.animalNumber].getName(),
-                                animals[View.animalNumber].getAge(),
-                                animals[View.animalNumber].getSound(),
-
-                     });
+            addRow(new Object[]{
+                        animals[View.animalNumber].getType(),
+                        animals[View.animalNumber].getName(),
+                        animals[View.animalNumber].getAge(),
+                        animals[View.animalNumber].getSound(),
+            });
 
             animalNumber++;
 
