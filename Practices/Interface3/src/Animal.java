@@ -3,14 +3,12 @@
  */
 public abstract class Animal {
 
-    protected String type;
-    protected String name;
-    protected int age;
-    protected boolean sound;
+    private String type;
+    private String name;
+    private int age;
+    private boolean sound;
 
-
-
-    public Animal(String type, String name, int age, boolean sound) {
+    protected Animal(String type, String name, int age, boolean sound) {
         this.type = type;
         this.name = name;
         this.age = age;
@@ -20,10 +18,6 @@ public abstract class Animal {
 
     public String getType() {
         return type;
-    }
-
-    public void setType(String t) {
-        this.type = t;
     }
 
     public String getName() {
@@ -42,8 +36,6 @@ public abstract class Animal {
         this.age = age;
     }
 
-    public abstract boolean sound(boolean sound);
-
     public void setSound(boolean sound){
         this.sound = sound;
     }
@@ -51,7 +43,6 @@ public abstract class Animal {
     public boolean getSound(){
         return sound;
     }
-
 
     @Override
     public String toString() {
