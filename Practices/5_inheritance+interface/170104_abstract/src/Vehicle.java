@@ -30,7 +30,7 @@ public abstract class Vehicle {
     public void setYear(int year){this.year = year;}
     public int getYear(){return year;}
 
-    public void setColor(String color){this.year = year;}
+    public void setColor(String color){this.color = color;}
     public String getColor(){return color;}
 
     public void setEngine(String engine){this.engine = engine;}
@@ -42,13 +42,11 @@ public abstract class Vehicle {
 
     @Override
     public String toString() {
-        return "Vehicle{" +
-                "model='" + model + '\'' +
+        return "model='" + model + '\'' +
                 ", make='" + make + '\'' +
                 ", year=" + year +
                 ", color='" + color + '\'' +
                 ", engine='" + engine + '\'' +
-                ", vin=" + vin +
-                '}';
+                ", vin='" + vin + '\''+", ";
     }
 }

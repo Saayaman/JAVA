@@ -1,7 +1,7 @@
 /**
  * Created by ayako_sayama on 2017/01/04.
  */
-public class Car extends Vehicle {
+public class Car extends Vehicle implements Drive {
 
     private int doors;
 
@@ -18,11 +18,23 @@ public class Car extends Vehicle {
         return doors;
     }
 
+
+    public void turnIgnitionOn(){
+        System.out.println("This is the TurnIgnitionOn for the Car class");
+    }
+
+    public void steer(){
+        System.out.println("This is the steer for the Car class");
+    }
+
+
     @Override
 
     public String toString() {
-        super.toString();
-        return java.lang.String.valueOf(doors);
+        return "Vehicle{"
+                + super.toString()
+                + "doors='" + doors + '\''
+                + '}';
     }
 
 }
