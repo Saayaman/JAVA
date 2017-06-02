@@ -1,6 +1,4 @@
 import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 
-public class GameController extends JPanel implements Common {
+public class Board extends JPanel implements Common, KeyListener {
 
     JLabel jLabel;
 
@@ -20,15 +18,16 @@ public class GameController extends JPanel implements Common {
 
     ArrayList<Bullet> bullets;
     int deaths = 0;
+    int moveInt = 1;
 
     Boolean gameRunning;
     Timer t;
 
-    public GameController(JFrame frame){
+    public Board(JFrame frame){
 
         initCharacters();
 
-        addKeyListener(listenKeys());
+        addKeyListener(this);
 
         gameRunning = true;
         frame.getContentPane();
@@ -51,7 +50,7 @@ public class GameController extends JPanel implements Common {
     }
 
     private void gameStart() {
-        if (gameRunning){
+//        if (gameRunning){
             ActionListener s = new ActionListener() {
                 public void actionPerformed(ActionEvent evt) {
                     moveAliens();
@@ -62,7 +61,7 @@ public class GameController extends JPanel implements Common {
 
             t=new Timer(10, s);
             t.start();
-        }
+//        }
     }
 
     private void initCharacters() {
@@ -99,33 +98,8 @@ public class GameController extends JPanel implements Common {
         g.drawImage(player.getPlayerImage(), player.getPlayerX(), player.getPlayerY(), this);
     }
 
-//    @Override
-//    public void paint(Graphics g)
-//    {
-//        g.setColor(Color.black);
-//        g.fillRect(0,0, getWidth(), getHeight());
-//
-//
-//        for (Alien alien:aliens){
-//
-//            if (alien.getVisible()){
-//                g.drawImage(alien.enemyImage, alien.getAlienX(), alien.getAlienY(), this);
-//            }
-//        }
-//
-//        if (bullet.isVisible()){
-//            g.drawImage(bullet.getBulletImage(), bullet.getBulletX(), bullet.getBulletY(), this);
-//        }
-//
-//            g.drawImage(player.getPlayerImage(), player.getPlayerX(),player.getPlayerY(), this);
-//
-//
-//    }
-
 
     private void moveAliens() {
-
-        int moveInt = 1;
 
         for (Alien alien : aliens) {
 
@@ -144,11 +118,16 @@ public class GameController extends JPanel implements Common {
                     }
                 }
 
-                if (alien.getAlienY() == player.getPlayerY()){
+                int alienX = alien.getAlienX();
+                int alienY = alien.getAlienY();
+                int playerY = player.getPlayerY();
+
+                if (alienY == playerY){
+                    System.out.println("gameover!");
                     gameOver();
                 }
 
-                if (alien.getAlienY() == FRAME_HEIGHT){
+                if (alienY >= FRAME_HEIGHT){
                     gameOver();
                 }
             }
@@ -158,6 +137,7 @@ public class GameController extends JPanel implements Common {
 
     private void gameOver() {
         gameRunning = false;
+        t.stop();
         gameStart();
         jLabel.setVisible(true);
         jLabel.setText("Game Over!");
@@ -198,23 +178,19 @@ public class GameController extends JPanel implements Common {
 
     private void gameWon() {
         gameRunning = false;
+        t.stop();
         gameStart();
         jLabel.setVisible(true);
         jLabel.setText("Game Won!");
     }
 
+    @Override
+    public void keyTyped(KeyEvent e) {
 
-    private KeyListener listenKeys() {
+    }
 
-        KeyListener listener = new KeyListener() {
-
-            @Override
-            public void keyTyped(KeyEvent e) {
-            }
-
-            @Override
-            public void keyPressed(KeyEvent e) {
-
+    @Override
+    public void keyPressed(KeyEvent e) {
                 int x = player.getPlayerX();
                 int y = player.getPlayerY();
 
@@ -235,12 +211,11 @@ public class GameController extends JPanel implements Common {
                     bullet.moveBullet();
                 }
 
-            }
+    }
 
-
-           @Override
-            public void keyReleased(KeyEvent e) {
-                int key = e.getKeyCode();
+    @Override
+    public void keyReleased(KeyEvent e) {
+            int key = e.getKeyCode();
 
                 if (key == KeyEvent.VK_LEFT) {
                     player.playerMove(0);
@@ -249,10 +224,5 @@ public class GameController extends JPanel implements Common {
                 if (key == KeyEvent.VK_RIGHT) {
                     player.playerMove(0);
                 }
-            }
-        };
-
-        return listener;
     }
-
 }

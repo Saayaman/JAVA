@@ -1,5 +1,4 @@
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -8,7 +7,7 @@ public class Main {
     public static void main(String[] args) throws InterruptedException {
 
         JFrame frame = new JFrame("Space Invaders");
-        GameController controller = new GameController(frame);
+        Board controller = new Board(frame);
 
         frame.getContentPane().add(controller);
         frame.pack();
@@ -23,7 +22,7 @@ public class Main {
             }
         });
 
-        //Repaint everything inside GameController while game is running!
+        //Repaint everything inside Board while game is running!
 //        while (controller.gameRunning) {
 //            controller.repaint();
 //            Thread.sleep(10);
