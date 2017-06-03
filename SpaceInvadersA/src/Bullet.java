@@ -9,12 +9,8 @@ import java.io.IOException;
 public class Bullet {
     private Image bulletImage;
 
-
-
     private int bulletX;
     private int bulletY;
-
-
 
     private boolean isVisible;
 

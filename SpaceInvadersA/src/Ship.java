@@ -6,15 +6,15 @@ import java.io.IOException;
 /**
  * Created by ayako_sayama on 2017-06-01.
  */
-public class Player implements Common{
+public class Ship implements Common{
 
-    private Image playerImage;
+    private Image shipImage;
     private int playerX;
     private int playerY;
 
-    public Player(){
+    public Ship(){
 
-        try{ playerImage = ImageIO.read(new File("src/Image/ship.gif"));}
+        try{ shipImage = ImageIO.read(new File("src/Image/ship.gif"));}
         catch (IOException e){ e.printStackTrace(); }
 
         playerX = (FRAME_WIDTH / 2 - 20);
@@ -29,29 +29,21 @@ public class Player implements Common{
         } else if (playerX <= 0 + 10){
             playerX = 0 + 10;
         }
+
     }
 
     //GETTER and SETTER
 
-    public Image getPlayerImage() {
-        return playerImage;
-    }
 
-    public int getPlayerX() {
+    public int getShipX() {
         return playerX;
     }
 
-    public void setPlayerX(int playerX) {
-        this.playerX = playerX;
-    }
-
-    public int getPlayerY() {
+    public int getShipY() {
         return playerY;
     }
 
-    public void setPlayerY(int playerY) {
-        this.playerY = playerY;
+    public Image getShipImage() {
+        return shipImage;
     }
-
-
 }

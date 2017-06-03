@@ -13,14 +13,13 @@ public class Board extends JPanel implements Common, KeyListener {
     JLabel jLabel;
 
     private ArrayList<Alien> aliens;
-    Player player;
+    private Ship ship;
     Bullet bullet;
 
     ArrayList<Bullet> bullets;
     int deaths = 0;
-    int moveInt = 1;
+    private int speed = 1;
 
-    Boolean gameRunning;
     Timer t;
 
     public Board(JFrame frame){
@@ -29,7 +28,6 @@ public class Board extends JPanel implements Common, KeyListener {
 
         addKeyListener(this);
 
-        gameRunning = true;
         frame.getContentPane();
         setPreferredSize(new Dimension(FRAME_WIDTH,FRAME_HEIGHT));
         setBackground(Color.black);
@@ -46,38 +44,39 @@ public class Board extends JPanel implements Common, KeyListener {
         //MUST setFocusable
         setFocusable(true);
 
-        gameStart();
-    }
+        ActionListener s = new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                moveAliens();
+                movePlayer();
+                moveBullets();
+                repaint();
+            }
+        };
 
-    private void gameStart() {
-//        if (gameRunning){
-            ActionListener s = new ActionListener() {
-                public void actionPerformed(ActionEvent evt) {
-                    moveAliens();
-                    moveBullets();
-                    repaint();
-                }
-            };
-
-            t=new Timer(10, s);
-            t.start();
-//        }
+        t=new Timer(10, s);
+        t.start();
     }
 
     private void initCharacters() {
 
         aliens = new ArrayList<>();
 
-        for (int row=0;row<8;row++) {
-            for (int column=0;column<14;column++) {
+        for (int row=0;row<6;row++) {
+            for (int column=0;column<10;column++) {
                 Alien enemy = new Alien(ENEMY_initX + 50 * column, ENEMY_initY + 35 * row);
                 aliens.add(enemy);
             }
         }
 
-        player = new Player();
+        ship = new Ship();
         bullets = new ArrayList<>();
         bullet = new Bullet();
+
+
+    }
+
+    private void movePlayer() {
+
     }
 
     //Paint is automatically called in JPanel, when IOException readfile() is called!
@@ -95,7 +94,7 @@ public class Board extends JPanel implements Common, KeyListener {
         if (bullet.isVisible()) {
             g.drawImage(bullet.getBulletImage(), bullet.getBulletX(), bullet.getBulletY(), this);
         }
-        g.drawImage(player.getPlayerImage(), player.getPlayerX(), player.getPlayerY(), this);
+        g.drawImage(ship.getShipImage(), ship.getShipX(), ship.getShipY(), this);
     }
 
 
@@ -104,12 +103,12 @@ public class Board extends JPanel implements Common, KeyListener {
         for (Alien alien : aliens) {
 
             if (alien.getVisible()){
-                alien.moveAlien(moveInt);
+                alien.moveAlien(speed);
 
                 int enemyX = alien.getAlienX();
                 if (enemyX >= FRAME_WIDTH - 40 || enemyX <= 10) {
 
-                    moveInt = -moveInt;
+                    speed = -speed;
                     Iterator i1 = aliens.iterator();
 
                     while (i1.hasNext()) {
@@ -120,27 +119,40 @@ public class Board extends JPanel implements Common, KeyListener {
 
                 int alienX = alien.getAlienX();
                 int alienY = alien.getAlienY();
-                int playerY = player.getPlayerY();
+                int shipY = ship.getShipY();
+                int shipX = ship.getShipX();
 
-                if (alienY == playerY){
+                // in order to use intersect method, you have to make new Rectangle
+                Rectangle alienRec = new Rectangle(alienX,alienY, ENEMY_WIDTH, ENEMY_HEIGHT);
+                Rectangle playerRec = new Rectangle(shipX,shipY, PLAYER_WIDTH,PLAYER_HEIGHT);
+
+                if (alienRec.intersects(playerRec)){
                     System.out.println("gameover!");
                     gameOver();
+                    break;
                 }
 
-                if (alienY >= FRAME_HEIGHT){
+                if (alienY == FRAME_HEIGHT){
                     gameOver();
+                    break;
                 }
             }
 
         }
+
+
     }
 
     private void gameOver() {
-        gameRunning = false;
-        t.stop();
-        gameStart();
+
         jLabel.setVisible(true);
         jLabel.setText("Game Over!");
+
+        t.stop();
+
+        for (Alien alien: aliens){
+            alien.setVisible(false);
+        }
     }
 
 
@@ -177,11 +189,9 @@ public class Board extends JPanel implements Common, KeyListener {
     }
 
     private void gameWon() {
-        gameRunning = false;
-        t.stop();
-        gameStart();
         jLabel.setVisible(true);
         jLabel.setText("Game Won!");
+        t.stop();
     }
 
     @Override
@@ -191,17 +201,17 @@ public class Board extends JPanel implements Common, KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-                int x = player.getPlayerX();
-                int y = player.getPlayerY();
+                int x = ship.getShipX();
+                int y = ship.getShipY();
 
                 int key = e.getKeyCode();
 
                 if (key == KeyEvent.VK_LEFT){
-                    player.playerMove(-6);
+                    ship.playerMove(-6);
                 }
 
                 if (key == KeyEvent.VK_RIGHT){
-                    player.playerMove(6);
+                    ship.playerMove(6);
                 }
 
                 if (key == KeyEvent.VK_SPACE) {
@@ -218,11 +228,11 @@ public class Board extends JPanel implements Common, KeyListener {
             int key = e.getKeyCode();
 
                 if (key == KeyEvent.VK_LEFT) {
-                    player.playerMove(0);
+                    ship.playerMove(0);
                 }
 
                 if (key == KeyEvent.VK_RIGHT) {
-                    player.playerMove(0);
+                    ship.playerMove(0);
                 }
     }
 }

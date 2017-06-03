@@ -6,9 +6,8 @@ import java.io.IOException;
 
 public class Alien implements Common {
 
-    private String enemyImg = "src/Image/enemy.gif";
+    private String enemyImg;
     public BufferedImage enemyImage;
-
 
 
     public boolean isVisible;
@@ -20,7 +19,7 @@ public class Alien implements Common {
 
 
     public Alien(int x, int y){
-        try{ enemyImage = ImageIO.read(new File(enemyImg));}
+        try{ enemyImage = ImageIO.read(new File("src/Image/enemy.gif"));}
         catch (IOException e){ e.printStackTrace(); }
 
         this.enemyX = x;
@@ -36,12 +35,12 @@ public class Alien implements Common {
 
 
 //        if (enemyX == FRAME_WIDTH -40 || enemyX == 20){
-//            moveInt = -moveInt;
+//            speed = -speed;
 //        }
 //
         this.enemyX += moveInt;
 
-//        this.enemyX += moveInt;
+//        this.enemyX += speed;
 
     }
 

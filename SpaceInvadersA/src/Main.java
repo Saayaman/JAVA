@@ -14,7 +14,6 @@ public class Main {
         frame.setVisible(true);
         frame.setResizable(false);
 
-
         //if you close window, game will end!
         frame.addWindowListener(new WindowAdapter(){
             public void windowClosing(WindowEvent e) {
@@ -22,10 +21,5 @@ public class Main {
             }
         });
 
-        //Repaint everything inside Board while game is running!
-//        while (controller.gameRunning) {
-//            controller.repaint();
-//            Thread.sleep(10);
-//        }
     }
 }
